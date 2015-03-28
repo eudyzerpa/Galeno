@@ -1,0 +1,17 @@
+<%'un combobox desde una base de datos%>
+
+  <Select Name="Eleccion">
+  <%Set conn = Server.CreateObject("ADODB.Connection")
+  conn.Open "DSN=Pruebas"
+  SQL = "SELECT * FROM tbpruebas"
+  Set rs = conn.Execute(SQL)
+  While Not rs.EOF
+  %>
+  <option value="<%=rs("id_categoria")%>"><%=rs("categoria")%></option>
+  <%
+  rs.MoveNext
+  Wend
+  rs.Close
+  %>
+  </Select>
+ 
